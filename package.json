@@ -9,6 +9,10 @@
   "version": "0.1.0",
   "license": "MIT",
   "main": "./test.coffee",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/metalim/.test.git"
+  },
   "dependencies": {
     "ansicolor": "^1.1.71",
     "ololog": "^1.1.78",

@@ -1,6 +1,6 @@
 pipez = require 'pipez'
 _trace = require 'ololog'
-#_trace1 = _trace.configure locate:shift:1
+_trace2 = _trace.configure locate:shift:2
 
 expect = pipez
 	select: ([ex,v], p)->
@@ -17,8 +17,8 @@ expect = pipez
 
 	report: ([ex,v,ok], p)->
 		unless ok
-			_trace.cyan '• expected', ex
-			_trace.red  '•   actual', v
+			_trace2.cyan '• expected:', ex
+			_trace2.red  '•   actual:', v
 		ok
 
 	throw: (ok, p)->
