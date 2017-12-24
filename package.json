@@ -1,0 +1,20 @@
+{
+  "name": "-test",
+  "description": "Micro-test framework for JS.",
+  "keywords": [
+    "micro",
+    "test"
+  ],
+  "author": "Maxim Litvinov",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "./test.coffee",
+  "dependencies": {
+    "ansicolor": "^1.1.71",
+    "ololog": "^1.1.78",
+    "pipez": "^1.1.7"
+  },
+  "devDependencies": {
+    "coffeescript": "^2.1.0"
+  }
+}
