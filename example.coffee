@@ -36,6 +36,11 @@ test.fancy = ->
 
 	return
 
+test.thrown = ->
+	# add message to throw Error
+	expect 1, 2, "This message is thrown"
+	return
+
 console.log 'before tests'
 
 #

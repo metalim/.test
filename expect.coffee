@@ -3,12 +3,12 @@ _trace = require 'ololog'
 _trace2 = _trace.configure locate:shift:2
 
 expect = pipez
-	select: ([ex,v], p)->
+	select: ([ex,v,msg], p)->
 		if p.nth?
 			v=v[p.nth]
-		[ex,v]
+		[ex,v,msg]
 
-	compare: ([ex,v], p)->
+	compare: ([ex,v,msg], p)->
 		ok = switch
 			when p.similar
 				do ->
@@ -20,17 +20,17 @@ expect = pipez
 				JSON.stringify(ex) is JSON.stringify v
 			else
 				ex is v
-		[ex,v,ok]
+		[ex,v,ok,msg]
 
-	report: ([ex,v,ok], p)->
+	report: ([ex,v,ok,msg], p)->
 		unless ok
 			_trace2.cyan '• expected:', ex
 			_trace2.red  '•   actual:', v
-		ok
+		[ok,msg]
 
-	throw: (ok, p)->
+	throw: ([ok,msg], p)->
 		unless ok
-			throw new Error 'unexpected'
+			throw new Error msg ? 'unexpected'
 		return
 
 get = ( fn )->
