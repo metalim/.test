@@ -19,6 +19,9 @@ test.fancy = ->
 	# compare content of the objects
 	expect.equal [3,4], foo 2
 
+	# ignore order of properties
+	expect.similar {a:1,b:2}, {b:2,a:1}
+
 	# compare i-th cell of an array
 	expect.nth(1) 4, foo 2
 

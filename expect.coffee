@@ -9,10 +9,17 @@ expect = pipez
 		[ex,v]
 
 	compare: ([ex,v], p)->
-		ok = if p.equal
-			JSON.stringify(ex) is JSON.stringify v
-		else
-			ex is v
+		ok = switch
+			when p.similar
+				do ->
+					return no if Object.keys(ex).length isnt Object.keys(v).length
+					for k,ev of ex when ev isnt v[k]
+						return no
+					yes
+			when p.equal
+				JSON.stringify(ex) is JSON.stringify v
+			else
+				ex is v
 		[ex,v,ok]
 
 	report: ([ex,v,ok], p)->
@@ -33,6 +40,7 @@ get = ( fn )->
 
 expect.methods Object.defineProperties {},
 	equal: get -> @configure compare:equal:yes
+	similar: get -> @configure compare:similar:yes
 	noThrow: get -> @configure throw:no
 
 expect.methods
