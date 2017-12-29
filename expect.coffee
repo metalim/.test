@@ -3,6 +3,17 @@ _trace = require 'ololog'
 _trace2 = _trace.configure locate:shift:2
 
 expect = pipez
+	exec: (ar, p)->
+		if p.exception
+			[f,msg]=ar
+			try
+				f()
+				['should throw','missed exception',msg]
+			catch e
+				[1,1,msg]
+		else
+			ar
+
 	select: ([ex,v,msg], p)->
 		if p.nth?
 			v=v[p.nth]
@@ -41,7 +52,8 @@ get = ( fn )->
 expect.methods Object.defineProperties {},
 	equal: get -> @configure compare:equal:yes
 	similar: get -> @configure compare:similar:yes
-	noThrow: get -> @configure throw:no
+	soft: get -> @before 'throw'
+	exception: get -> @configure exec:exception:yes
 
 expect.methods
 	nth: (k)-> @configure select:nth:k

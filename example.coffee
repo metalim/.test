@@ -31,15 +31,23 @@ test.fancy = ->
 	# can be chained
 	expect.nth('7').equal [8,9], foo 3
 
+
+test.expect_throw = ->
+
+	# expect functions to fail
+	expect.exception -> throw new Error
+
+
+test.report_without_throw = ->
 	# and used to print without failing a test
-	expect.noThrow 'this was expected', 'but we got this'
+	expect.soft 'this was expected', 'but we got this'
 
-	return
 
-test.thrown = ->
-	# add message to throw Error
+test.demo_throw = ->
+
+	# add message to Error thrown
 	expect 1, 2, "This message is thrown"
-	return
+
 
 console.log 'before tests'
 

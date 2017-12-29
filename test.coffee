@@ -1,4 +1,5 @@
-_log = require('ololog').noLocate
+_trace = require 'ololog'
+_log = _trace.noLocate
 ansi = require 'ansicolor'
 
 exports.expect = require './expect'
@@ -24,13 +25,14 @@ exports.test = test = ->
 	for k, fn of test
 		++cur
 		try
+			_log "• test #{cur}/#{total}:", k
 			fn()
 			++ok
-			_log "• test #{cur}/#{total}:", ansi.green k
+			_log.green '✓ ......... passed'
 		catch e
 			_log.red e.message
 			++failed
-			_log "• test #{cur}/#{total}:", ansi.red "#{k} failed"
+			_log.red '✗ ......... failed:', k
 	return
 
 #
@@ -42,5 +44,5 @@ exports.main = main = ( fn )->
 		test()
 		fn()
 	catch e
-		_log.red.error e
+		_trace.red.error e
 	return

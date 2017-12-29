@@ -27,6 +27,9 @@ test.fancy = ->
   # compare content of the objects
   expect.equal [3,4], foo 2
 
+  # ignore order of properties
+  expect.similar {a:1,b:2}, {b:2,a:1}
+
   # compare i-th cell of an array
   expect.nth(1) 4, foo 2
 
@@ -36,10 +39,23 @@ test.fancy = ->
   # can be chained
   expect.nth('7').equal [8,9], foo 3
 
-  # and used to print without failing a test
-  expect.noThrow 'this was expected', 'but we got this'
 
-  return
+test.expect_throw = ->
+
+  # expect functions to fail
+  expect.exception -> throw new Error
+
+
+test.report_without_throw = ->
+  # and used to print without failing a test
+  expect.soft 'this was expected', 'but we got this'
+
+
+test.demo_throw = ->
+
+  # add message to Error thrown
+  expect 1, 2, "This message is thrown"
+
 
 console.log 'before tests'
 
@@ -49,4 +65,5 @@ console.log 'before tests'
 main -> # note there's no '='
   console.log 'after tests'
   return
+
 ```
