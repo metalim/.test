@@ -35,8 +35,8 @@ expect = pipez
 
 	report: ([ex,v,ok,msg], p)->
 		unless ok
-			_trace2.cyan '• expected:', ex
-			_trace2.red  '•   actual:', v
+			_trace2.cyan '⇒ expected:', ex
+			_trace2.red  '⇐   actual:', v
 		[ok,msg]
 
 	throw: ([ok,msg], p)->

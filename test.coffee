@@ -28,11 +28,11 @@ exports.test = test = ->
 			_log "• test #{cur}/#{total}:", k
 			fn()
 			++ok
-			_log.green '✓ ......... passed'
+			_log.green '✓ passed'
 		catch e
-			_log.red e.message
+			_log.red ' ', e.message
 			++failed
-			_log.red '✗ ......... failed:', k
+			_log.red '✗ failed:', k
 	return
 
 #
