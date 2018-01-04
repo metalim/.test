@@ -33,6 +33,10 @@ exports.test = test = ->
 			_log.red ' ', e.message
 			++failed
 			_log.red '✗ failed:', k
+	msg = ["Tests: #{total}"]
+	msg.push ansi.green "✓ passed: #{ok}" if ok
+	msg.push ansi.red "✗ failed: #{failed}" if failed
+	_log.yellow msg.join ', '
 	return
 
 #
