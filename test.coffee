@@ -30,7 +30,7 @@ exports.test = test = ->
 			++ok
 			_log.green '✓ passed'
 		catch e
-			_log.red ' ', e.message
+			_log.red ' ', if e instanceof Error then e.message else e
 			++failed
 			_log.red '✗ failed:', k
 	msg = ["Tests: #{total}"]
