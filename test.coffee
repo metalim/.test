@@ -1,6 +1,8 @@
 _trace = require 'ololog'
 _log = _trace.noLocate
 ansi = require 'ansicolor'
+StackTracey = require 'stacktracey'
+StackTracey.isThirdParty.include (x)-> x in ['module.js', 'bootstrap_node.js' ]
 
 exports.expect = require './expect'
 
@@ -30,7 +32,7 @@ exports.test = test = ->
 			++ok
 			_log.green '✓ passed'
 		catch e
-			_log.red ' ', if e instanceof Error then e.message else e
+			_log.red ' ', if e instanceof Error then e.message+'\n'+new StackTracey(e).clean.pretty else e
 			++failed
 			_log.red '✗ failed:', k
 	msg = ["Tests: #{total}"]
