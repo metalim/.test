@@ -4,7 +4,7 @@ _trace2 = _trace.configure locate:shift:2
 
 expect = pipez
 	exec: (ar, p)->
-		if p.exception
+		if p.error
 			[f,msg]=ar
 			try
 				f()
@@ -52,8 +52,12 @@ get = ( fn )->
 expect.methods Object.defineProperties {},
 	equal: get -> @configure compare:equal:yes
 	similar: get -> @configure compare:similar:yes
-	soft: get -> @before 'throw'
+	error: get -> @configure exec:error:yes
+	noThrow: get -> @before 'throw'
+
+	#deprecated
 	exception: get -> @configure exec:exception:yes
+	soft: get -> @before 'throw'
 
 expect.methods
 	nth: (k)-> @configure select:nth:k

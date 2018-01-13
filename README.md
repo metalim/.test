@@ -43,12 +43,12 @@ test.fancy = ->
 test.expect_throw = ->
 
   # expect functions to fail
-  expect.exception -> throw new Error
+  expect.error -> throw new Error
 
 
 test.report_without_throw = ->
   # and used to print without failing a test
-  expect.soft 'this was expected', 'but we got this'
+  expect.noThrow 'this was expected', 'but we got this'
 
 
 test.demo_throw = ->
@@ -65,5 +65,5 @@ console.log 'before tests'
 main -> # note there's no '='
   console.log 'after tests'
   return
-
+  
 ```
