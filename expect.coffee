@@ -6,11 +6,14 @@ expect = pipez
 	exec: (ar, p)->
 		if p.error
 			[f,msg]=ar
-			try
-				f()
-				['should throw','missed exception',msg]
-			catch e
-				[1,1,msg]
+			if typeof f isnt 'function'
+				[(->),f,'not a function']
+			else
+				try
+					f()
+					['should throw','missed exception',msg]
+				catch e
+					[1,1,msg]
 		else
 			ar
 
