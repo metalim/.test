@@ -32,7 +32,9 @@ exports.test = test = ->
 			++ok
 			_log.green '✓ passed'
 		catch e
-			_log.red ' ', if e instanceof Error then e.message+'\n'+new StackTracey(e).clean.pretty else e
+			_log.red ' ', if e instanceof Error
+				e.message+'\n'+new StackTracey(e).clean.pretty.split('\n')[0].replace /\s\s+/g, '  '
+			else e
 			++failed
 			_log.red '✗ failed:', k
 	msg = ["Tests: #{total}"]
