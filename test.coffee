@@ -16,7 +16,7 @@ exports.expect = require './expect'
 #
 # # don't have to call test() manually
 #
-# main ->
+# testAndRun ->
 #   # executed after all test passed
 #
 exports.test = test = ->
@@ -44,10 +44,10 @@ exports.test = test = ->
 	return
 
 #
-# main ->  # note there's no '='
+# testAndRun ->  # note there's no '='
 #   some_code_here() # this is executed after all tests have completed
 #
-exports.main = main = ( fn )->
+exports.testAndRun = testAndRun = ( fn )->
 	try
 		test()
 		fn()

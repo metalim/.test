@@ -1,5 +1,5 @@
 #!/usr/bin/env coffee
-{test,expect,main} = require './test'
+{test,expect,testAndRun} = require './test'
 
 foo = (i)->
   [1,2,[3,4],{5:6,7:[8,9]}][i]
@@ -52,8 +52,8 @@ test.demo_throw = ->
 console.log 'before tests'
 
 #
-# call main to run all tests, and then continue with provided function
+# call testAndRun to run all tests, and then continue with provided function
 #
-main -> # note there's no '='
+testAndRun -> # note there's no '='
   console.log 'after tests'
   return

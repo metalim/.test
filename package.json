@@ -6,7 +6,7 @@
     "test"
   ],
   "author": "Maxim Litvinov",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "./test.coffee",
   "repository": {
@@ -14,11 +14,11 @@
     "url": "git://github.com/metalim/.test.git"
   },
   "dependencies": {
-    "ansicolor": "^1.1.71",
-    "ololog": "^1.1.78",
-    "pipez": "^1.1.7"
+    "ansicolor": "^1.1.93",
+    "ololog": "^1.1.162",
+    "pipez": "^1.1.12"
   },
   "devDependencies": {
-    "coffeescript": "^2.1.0"
+    "coffeescript": "^2.5.1"
   }
 }
